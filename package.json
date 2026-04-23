@@ -1,0 +1,9 @@
+{
+  "name": "wedding-invitation",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "cd frontend && npm install && npm run build",
+    "install-all": "cd frontend && npm install && cd ../api && pip install -r requirements.txt"
+  }
+}
