@@ -48,8 +48,8 @@ function CountUnit({ value, label, index }) {
       <div
         style={{
           position: "relative",
-          width: "clamp(70px, 18vw, 110px)",
-          height: "clamp(80px, 20vw, 130px)",
+          width: "clamp(60px, 20vw, 90px)",
+          height: "clamp(70px, 22vw, 110px)",
         }}
       >
         {/* Background card */}
@@ -86,7 +86,7 @@ function CountUnit({ value, label, index }) {
               animate={{ y: 0, opacity: 1 }}
               exit={{ y: 20, opacity: 0 }}
               transition={{ duration: 0.25, ease: "easeOut" }}
-              className="countdown-digit"
+              className="countdown-digit text-[clamp(1.8rem,5vw,3rem)]"
             >
               {pad(displayValue)}
             </motion.span>
@@ -111,7 +111,7 @@ function CountUnit({ value, label, index }) {
       <p
         style={{
           fontFamily: "'Lato', sans-serif",
-          fontSize: "0.7rem",
+          fontSize: "0.6rem",
           letterSpacing: "0.2em",
           textTransform: "uppercase",
           color: "#9b8ea0",
@@ -184,7 +184,7 @@ export default function CountdownTimer() {
         <motion.p
           initial={{ opacity: 0 }}
           animate={inView ? { opacity: 1 } : {}}
-          style={{ fontFamily: "'Dancing Script', cursive", fontSize: "1.3rem", color: "#eab308", marginBottom: "0.5rem" }}
+          style={{ fontFamily: "'Dancing Script', cursive", fontSize: "1.2rem", color: "#eab308", marginBottom: "0.25rem" }}
         >
           The Big Day Is Near
         </motion.p>
@@ -194,9 +194,9 @@ export default function CountdownTimer() {
           transition={{ delay: 0.1 }}
           style={{
             fontFamily: "'Playfair Display', serif",
-            fontSize: "clamp(1.8rem, 5vw, 3rem)",
+            fontSize: "clamp(1.6rem, 5vw, 2.8rem)",
             color: "#fdfaf5",
-            margin: "0 0 0.5rem",
+            margin: "0 0 0.25rem",
             fontWeight: 400,
           }}
         >
@@ -206,7 +206,7 @@ export default function CountdownTimer() {
           initial={{ opacity: 0 }}
           animate={inView ? { opacity: 1 } : {}}
           transition={{ delay: 0.2 }}
-          style={{ fontFamily: "'Dancing Script', cursive", fontSize: "1.5rem", color: "#eab308", marginBottom: "2.5rem" }}
+          style={{ fontFamily: "'Dancing Script', cursive", fontSize: "1.3rem", color: "#eab308", marginBottom: "1.5rem" }}
         >
           {groom} &amp; {bride}'s Wedding
         </motion.p>
@@ -231,17 +231,17 @@ export default function CountdownTimer() {
               display: "flex",
               justifyContent: "center",
               alignItems: "flex-start",
-              gap: "clamp(0.75rem, 3vw, 2rem)",
-              flexWrap: "wrap",
+              gap: "clamp(4px, 1.5vw, 16px)",
+              width: "100%",
             }}
           >
             <CountUnit value={timeLeft.days} label="Days" index={0} />
             <div
               style={{
                 fontFamily: "'Playfair Display', serif",
-                fontSize: "clamp(2rem, 6vw, 4rem)",
+                fontSize: "clamp(1.2rem, 4vw, 2.5rem)",
                 color: "rgba(234,179,8,0.6)",
-                marginTop: "0.5rem",
+                marginTop: "1.2rem",
               }}
             >
               :
@@ -250,9 +250,9 @@ export default function CountdownTimer() {
             <div
               style={{
                 fontFamily: "'Playfair Display', serif",
-                fontSize: "clamp(2rem, 6vw, 4rem)",
+                fontSize: "clamp(1.2rem, 4vw, 2.5rem)",
                 color: "rgba(234,179,8,0.6)",
-                marginTop: "0.5rem",
+                marginTop: "1.2rem",
               }}
             >
               :
@@ -261,9 +261,9 @@ export default function CountdownTimer() {
             <div
               style={{
                 fontFamily: "'Playfair Display', serif",
-                fontSize: "clamp(2rem, 6vw, 4rem)",
+                fontSize: "clamp(1.2rem, 4vw, 2.5rem)",
                 color: "rgba(234,179,8,0.6)",
-                marginTop: "0.5rem",
+                marginTop: "1.2rem",
               }}
             >
               :

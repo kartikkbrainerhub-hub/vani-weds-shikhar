@@ -118,9 +118,18 @@
     margin-bottom: 0.5rem;
   }
 
-  /* Responsive section padding */
+  /* Responsive section padding - tighter for luxury feel */
   .section-padding {
-    padding: clamp(3rem, 10vw, 6rem) 1.25rem;
+    padding: clamp(2.5rem, 6vw, 3.75rem) 1.25rem;
+  }
+
+  /* Elegant gold divider line */
+  .gold-divider {
+    width: 60%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, #eab308 50%, transparent 100%);
+    margin: 0 auto;
+    opacity: 0.3;
   }
 
   /* Script accent */

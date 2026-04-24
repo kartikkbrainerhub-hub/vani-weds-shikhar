@@ -103,7 +103,7 @@ export default function ThankYouSection() {
           initial={{ scale: 0 }}
           animate={inView ? { scale: 1 } : {}}
           transition={{ type: "spring", damping: 10, delay: 0.2 }}
-          style={{ fontSize: "4rem", marginBottom: "1rem" }}
+          style={{ fontSize: "3rem", marginBottom: "0.5rem" }}
         >
           💕
         </motion.div>
@@ -113,7 +113,7 @@ export default function ThankYouSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ delay: 0.3, duration: 0.7 }}
-          style={{ fontFamily: "'Dancing Script', cursive", fontSize: "1.5rem", color: "#eab308", marginBottom: "0.5rem" }}
+          style={{ fontFamily: "'Dancing Script', cursive", fontSize: "1.3rem", color: "#eab308", marginBottom: "0.25rem" }}
         >
           With Love &amp; Gratitude
         </motion.p>
@@ -124,10 +124,10 @@ export default function ThankYouSection() {
           transition={{ delay: 0.4, duration: 0.8 }}
           style={{
             fontFamily: "'Playfair Display', serif",
-            fontSize: "clamp(2rem, 7vw, 4rem)",
+            fontSize: "clamp(1.8rem, 6vw, 3rem)",
             color: "#fdfaf5",
             fontWeight: 700,
-            margin: "0 0 0.5rem",
+            margin: "0 0 0.25rem",
             lineHeight: 1.2,
           }}
         >
@@ -140,10 +140,10 @@ export default function ThankYouSection() {
           transition={{ delay: 0.6, duration: 0.8 }}
           style={{
             fontFamily: "'Playfair Display', serif",
-            fontSize: "clamp(1rem, 3vw, 1.5rem)",
+            fontSize: "clamp(0.9rem, 3vw, 1.2rem)",
             color: "rgba(253,250,245,0.8)",
             fontStyle: "italic",
-            marginBottom: "2rem",
+            marginBottom: "1.5rem",
           }}
         >
           for being part of our love story
@@ -154,11 +154,11 @@ export default function ThankYouSection() {
           initial={{ scaleX: 0 }}
           animate={inView ? { scaleX: 1 } : {}}
           transition={{ delay: 0.7, duration: 0.8 }}
-          style={{ display: "flex", justifyContent: "center", alignItems: "center", gap: "1rem", marginBottom: "2rem" }}
+          style={{ display: "flex", justifyContent: "center", alignItems: "center", gap: "1rem", marginBottom: "1.5rem" }}
         >
-          <div style={{ width: 80, height: 1, background: "linear-gradient(to right, transparent, #eab308)" }} />
-          <span style={{ fontSize: "1.5rem" }}>💍</span>
-          <div style={{ width: 80, height: 1, background: "linear-gradient(to left, transparent, #eab308)" }} />
+          <div style={{ width: 60, height: 1, background: "linear-gradient(to right, transparent, #eab308)" }} />
+          <span style={{ fontSize: "1.2rem" }}>💍</span>
+          <div style={{ width: 60, height: 1, background: "linear-gradient(to left, transparent, #eab308)" }} />
         </motion.div>
 
         {/* Names */}
@@ -168,12 +168,12 @@ export default function ThankYouSection() {
           transition={{ delay: 0.8, duration: 0.7 }}
           style={{
             fontFamily: "'Dancing Script', cursive",
-            fontSize: "clamp(2rem, 6vw, 3.5rem)",
+            fontSize: "clamp(1.8rem, 6vw, 2.8rem)",
             color: "#eab308",
-            marginBottom: "1rem",
+            marginBottom: "0.5rem",
           }}
         >
-          {groom} &amp; {bride}
+          {bride} &amp; {groom}
         </motion.div>
 
         {/* Hashtag */}
@@ -183,10 +183,10 @@ export default function ThankYouSection() {
           transition={{ delay: 1, duration: 0.6 }}
           style={{
             fontFamily: "'Lato', sans-serif",
-            fontSize: "1rem",
+            fontSize: "0.9rem",
             color: "rgba(234,179,8,0.7)",
             letterSpacing: "0.15em",
-            marginBottom: "3rem",
+            marginBottom: "2rem",
           }}
         >
           {hashtag}
@@ -198,7 +198,7 @@ export default function ThankYouSection() {
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ delay: 1.1, duration: 0.7 }}
           style={{
-            padding: "1.5rem 2rem",
+            padding: "1.25rem 1.5rem",
             borderRadius: "1rem",
             border: "1px solid rgba(234,179,8,0.25)",
             background: "rgba(234,179,8,0.05)",
@@ -208,9 +208,9 @@ export default function ThankYouSection() {
           <p
             style={{
               fontFamily: "'Cormorant Garamond', serif",
-              fontSize: "1.05rem",
+              fontSize: "0.95rem",
               color: "rgba(253,250,245,0.85)",
-              lineHeight: 1.8,
+              lineHeight: 1.6,
               margin: 0,
               fontStyle: "italic",
             }}
@@ -226,29 +226,23 @@ export default function ThankYouSection() {
           initial={{ opacity: 0 }}
           animate={inView ? { opacity: 1 } : {}}
           transition={{ delay: 1.6 }}
-          className="mt-12 flex flex-col items-center gap-4"
+          className="mt-8 flex flex-col items-center gap-2"
         >
-          <div className="w-px h-12 bg-gradient-to-b from-[#eab308]/40 to-transparent" />
+          <div className="w-px h-8 bg-gradient-to-b from-[#eab308]/40 to-transparent" />
           
           <motion.button
             whileHover={{ scale: 1.05, letterSpacing: "0.2em" }}
             whileTap={{ scale: 0.95 }}
             onClick={() => {
-              // Trigger transition sequence
               const section = document.getElementById("scratch-reveal");
               if (section) {
-                // First fade out this section
                 const container = titleRef.current.parentElement;
                 container.style.transition = "all 0.8s ease-in-out";
                 container.style.opacity = "0";
                 container.style.filter = "blur(10px)";
                 container.style.transform = "scale(0.98)";
-
-                // Then scroll and reveal
                 setTimeout(() => {
                   section.scrollIntoView({ behavior: "auto" });
-                  // We use behavior auto to jump, then the other section's animation handles the entrance
-                  // Or we can use a global transition state.
                   window.dispatchEvent(new CustomEvent('reset-scratch'));
                 }, 800);
               }

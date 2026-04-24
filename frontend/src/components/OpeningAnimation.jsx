@@ -88,7 +88,7 @@ export default function OpeningAnimation({ onComplete }) {
         position: "fixed",
         inset: 0,
         zIndex: 9999,
-        height: "100vh",
+        minHeight: "100vh",
         width: "100%",
         display: "flex",
         alignItems: "center",
@@ -149,7 +149,7 @@ export default function OpeningAnimation({ onComplete }) {
           >
             {/* Hierarchy: Names -> Line -> OUR STORY BEGINS -> WEDDING INVITATION */}
             <div style={{ fontFamily: "'Dancing Script', cursive", fontSize: "1.8rem", color: COLORS.accent,paddingTop:"70px",marginBottom:"50px" }}>
-              {groom} & {bride}
+              {bride} & {groom}
             </div>
             <div style={{ width: "40px", height: "1px", background: COLORS.gold}} />
             <p style={{ 

@@ -44,19 +44,19 @@ export default function MusicPlayer() {
         transition={{ delay: 2, duration: 0.5 }}
         style={{
           position: "fixed",
-          bottom: "1.5rem",
+          bottom: "2rem",
           right: "1.5rem",
           zIndex: 1000,
-          width: "48px",
-          height: "48px",
+          width: "44px",
+          height: "44px",
           borderRadius: "50%",
-          background: "rgba(255, 255, 255, 0.8)",
-          backdropFilter: "blur(8px)",
-          border: "1px solid rgba(234, 179, 8, 0.4)",
+          background: "rgba(255, 255, 255, 0.9)",
+          backdropFilter: "blur(12px)",
+          border: "1px solid rgba(212, 175, 55, 0.4)",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          boxShadow: "0 8px 32px rgba(0,0,0,0.12)",
+          boxShadow: "0 8px 32px rgba(212, 175, 55, 0.15)",
           cursor: "pointer",
         }}
       >

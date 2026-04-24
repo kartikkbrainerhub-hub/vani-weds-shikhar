@@ -221,23 +221,41 @@ export default function ScratchToRevealSection() {
     const gold = "#D4AF37";
     const softGold = "#f3d27a";
     const white = "#ffffff";
-    const defaults = {
-      spread: 360,
-      ticks: 150,
-      gravity: 0.8,
-      decay: 0.95,
-      startVelocity: 30,
-      colors: [gold, softGold, white],
-      shapes: ["circle"],
-    };
-    confetti({ ...defaults, particleCount: 40, scalar: 1.2 });
-    const end = Date.now() + 2000;
-    const frame = () => {
-      confetti({ particleCount: 2, angle: 60, spread: 55, origin: { x: 0, y: 0 }, colors: [gold, softGold], gravity: 0.5, ticks: 200, scalar: 0.7 });
-      confetti({ particleCount: 2, angle: 120, spread: 55, origin: { x: 1, y: 0 }, colors: [gold, softGold], gravity: 0.5, ticks: 200, scalar: 0.7 });
-      if (Date.now() < end) requestAnimationFrame(frame);
-    };
-    frame();
+    
+    // Top-to-bottom firecracker effect
+    let y = 0;
+    const interval = setInterval(() => {
+      confetti({
+        particleCount: 15,
+        spread: 70,
+        origin: { x: 0.2, y: y },
+        colors: [gold, softGold, white],
+        gravity: 0.6,
+        scalar: 0.8
+      });
+      confetti({
+        particleCount: 15,
+        spread: 70,
+        origin: { x: 0.8, y: y },
+        colors: [gold, softGold, white],
+        gravity: 0.6,
+        scalar: 0.8
+      });
+      
+      y += 0.1;
+      if (y > 1) {
+        clearInterval(interval);
+        // Final burst at the end
+        confetti({
+          particleCount: 100,
+          spread: 160,
+          origin: { x: 0.5, y: 0.7 },
+          colors: [gold, softGold, white],
+          gravity: 0.8
+        });
+      }
+    }, 100);
+
     setTimeout(() => {
       setShowFinalDate(true);
     }, 2000);
@@ -247,7 +265,7 @@ export default function ScratchToRevealSection() {
     <section 
       id="scratch-reveal"
       ref={containerRef}
-      className="relative py-24 bg-[#fdfaf5] flex flex-col items-center justify-center overflow-hidden px-4 min-h-[400px]"
+      className="relative py-12 bg-[#fdfaf5] flex flex-col items-center justify-center overflow-hidden px-4 min-h-[350px]"
     >
       {/* Golden Glow Bridge Effect - appears during entry */}
       <motion.div
@@ -270,14 +288,14 @@ export default function ScratchToRevealSection() {
             <motion.div
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              className="text-center mb-12"
+              className="text-center mb-6"
             >
               <h2 className="font-['Cormorant_Garamond'] text-[#D4AF37] text-lg uppercase tracking-[0.4em] font-bold">
                 Scratch to Reveal
               </h2>
             </motion.div>
 
-            <div className="flex gap-4 md:gap-6 justify-center items-center mb-8">
+            <div className="flex gap-2 md:gap-3 justify-center items-center mb-4">
               <ScratchCard 
                 index={0} 
                 label="14" 

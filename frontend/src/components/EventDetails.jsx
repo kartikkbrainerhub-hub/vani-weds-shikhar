@@ -77,15 +77,15 @@ export default function EventDetails() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="text-center mb-20"
+          className="text-center mb-12"
         >
-          <span className="font-['Dancing_Script'] text-2xl text-[#D4AF37] block mb-2">
+          <span className="font-['Dancing_Script'] text-xl text-[#D4AF37] block mb-1">
             Wedding
           </span>
-          <h2 className="font-['Playfair_Display'] text-5xl md:text-7xl font-bold text-[#3d2b1f]">
+          <h2 className="font-['Playfair_Display'] text-4xl md:text-6xl font-bold text-[#3d2b1f]">
             Celebrations
           </h2>
-          <div className="w-24 h-px bg-[#D4AF37] mx-auto mt-8 opacity-40" />
+          <div className="gold-divider mt-6" />
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

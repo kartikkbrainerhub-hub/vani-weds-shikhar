@@ -30,11 +30,11 @@ export default function LocationSection() {
       />
 
       {/* Header */}
-      <div ref={titleRef} style={{ textAlign: "center", marginBottom: "3rem", position: "relative", zIndex: 1 }}>
+      <div ref={titleRef} className="text-center mb-10 relative z-10">
         <motion.p
           initial={{ opacity: 0 }}
           animate={inView ? { opacity: 1 } : {}}
-          style={{ fontFamily: "'Dancing Script', cursive", fontSize: "1.3rem", color: "#ca8a04", marginBottom: "0.5rem" }}
+          className="font-['Dancing_Script'] text-xl text-[#ca8a04] mb-1"
         >
           Find Us Here
         </motion.p>
@@ -44,18 +44,9 @@ export default function LocationSection() {
           transition={{ delay: 0.1 }}
           className="section-title"
         >
-          Venue &amp; Location
+          Venue & Location
         </motion.h2>
-        <motion.div
-          initial={{ scaleX: 0 }}
-          animate={inView ? { scaleX: 1 } : {}}
-          transition={{ delay: 0.3 }}
-          className="ornament-divider"
-        >
-          <span>✦</span>
-          <span>📍</span>
-          <span>✦</span>
-        </motion.div>
+        <div className="gold-divider mt-6" />
       </div>
 
       <div
