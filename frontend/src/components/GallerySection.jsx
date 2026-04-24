@@ -1,41 +1,38 @@
 import React, { useState, useEffect, useCallback, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, ChevronLeft, ChevronRight, ZoomIn } from "lucide-react";
+import {GalleryPhotos} from "../assets/images";
 
 const galleryPhotos = [
   {
-    src: "https://images.unsplash.com/photo-1519741497674-611481863552?w=1200&q=80",
+    src:GalleryPhotos.pic1,
     alt: "Wedding flowers",
   },
   {
-    src: "https://images.unsplash.com/photo-1529636798458-92182e662485?w=1200&q=80",
+    src:GalleryPhotos.pic2,
     alt: "Couple portrait",
   },
   {
-    src: "https://images.unsplash.com/photo-1606216840240-f01d6e29a2d3?w=1200&q=80",
+    src: GalleryPhotos.pic3,
     alt: "Wedding rings",
   },
   {
-    src: "https://images.unsplash.com/photo-1520854221256-17451cc331bf?w=1200&q=80",
+    src: GalleryPhotos.pic4,
     alt: "Wedding ceremony",
   },
   {
-    src: "https://images.unsplash.com/photo-1583939411023-14783179e581?w=1200&q=80",
+    src:GalleryPhotos.pic5,
     alt: "Couple dancing",
   },
   {
-    src: "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=1200&q=80",
+    src:GalleryPhotos.pic6,
     alt: "Bride and groom",
   },
   {
-    src: "https://images.unsplash.com/photo-1516401266446-6432a8a07d41?w=1200&q=80",
+    src:GalleryPhotos.pic7,
     alt: "Wedding decoration",
   },
-  {
-    src: "https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=1200&q=80",
-    alt: "Bridal detail",
-  },
-];
+  ];
 
 const LetterByLetterTitle = ({ text }) => {
   const letters = Array.from(text);

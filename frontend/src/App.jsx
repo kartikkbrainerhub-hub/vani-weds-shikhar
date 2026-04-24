@@ -118,10 +118,11 @@ export default function App() {
             </footer>
           </div>
 
-          {/* Floating music player */}
-          <MusicPlayer />
         </motion.div>
       )}
+
+      {/* Global music player */}
+      <MusicPlayer />
     </>
   );
 }

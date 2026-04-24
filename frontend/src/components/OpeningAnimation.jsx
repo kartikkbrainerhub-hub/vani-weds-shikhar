@@ -75,7 +75,11 @@ export default function OpeningAnimation({ onComplete }) {
     
     setTimeout(() => {
       setIsRevealed(true);
-      setTimeout(onComplete, 1200);
+      setTimeout(() => {
+        // Start background music automatically after animation completes
+        window.dispatchEvent(new CustomEvent("music-start"));
+        onComplete();
+      }, 1200);
     }, 1500);
   };
 
