@@ -221,35 +221,46 @@ export default function ThankYouSection() {
           </p>
         </motion.div>
 
-        {/* Confetti re-trigger button */}
-        <motion.button
+        {/* Transition / Continue Button */}
+        <motion.div
           initial={{ opacity: 0 }}
           animate={inView ? { opacity: 1 } : {}}
-          transition={{ delay: 1.4 }}
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          onClick={() => {
-            setShowConfetti(true);
-            setConfettiRunning(true);
-            setTimeout(() => setConfettiRunning(false), 4000);
-          }}
-          style={{
-            marginTop: "2.5rem",
-            background: "transparent",
-            border: "1.5px solid rgba(234,179,8,0.5)",
-            borderRadius: "50px",
-            padding: "0.75rem 2rem",
-            fontFamily: "'Lato', sans-serif",
-            fontSize: "0.8rem",
-            color: "#eab308",
-            letterSpacing: "0.1em",
-            textTransform: "uppercase",
-            cursor: "pointer",
-            fontWeight: 700,
-          }}
+          transition={{ delay: 1.6 }}
+          className="mt-12 flex flex-col items-center gap-4"
         >
-          🎉 Celebrate Again
-        </motion.button>
+          <div className="w-px h-12 bg-gradient-to-b from-[#eab308]/40 to-transparent" />
+          
+          <motion.button
+            whileHover={{ scale: 1.05, letterSpacing: "0.2em" }}
+            whileTap={{ scale: 0.95 }}
+            onClick={() => {
+              // Trigger transition sequence
+              const section = document.getElementById("scratch-reveal");
+              if (section) {
+                // First fade out this section
+                const container = titleRef.current.parentElement;
+                container.style.transition = "all 0.8s ease-in-out";
+                container.style.opacity = "0";
+                container.style.filter = "blur(10px)";
+                container.style.transform = "scale(0.98)";
+
+                // Then scroll and reveal
+                setTimeout(() => {
+                  section.scrollIntoView({ behavior: "auto" });
+                  // We use behavior auto to jump, then the other section's animation handles the entrance
+                  // Or we can use a global transition state.
+                  window.dispatchEvent(new CustomEvent('reset-scratch'));
+                }, 800);
+              }
+            }}
+            className="group relative px-8 py-4 bg-transparent text-[#eab308] font-['Cormorant_Garamond'] text-lg uppercase tracking-[0.15em] border border-[#eab308]/30 rounded-full overflow-hidden transition-all duration-500 hover:border-[#eab308] hover:shadow-[0_0_20px_rgba(234,179,8,0.2)]"
+          >
+            <span className="relative z-10">Continue Journey</span>
+            <div className="absolute inset-0 bg-[#eab308]/5 translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
+          </motion.button>
+          
+          <span className="text-[10px] text-[#eab308]/50 uppercase tracking-[0.2em] font-['Lato']">Explore Again</span>
+        </motion.div>
       </div>
     </section>
   );

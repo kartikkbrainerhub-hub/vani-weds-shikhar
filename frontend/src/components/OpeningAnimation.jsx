@@ -5,8 +5,8 @@ import ganpatiSeal from "../assets/images/ganpati-seal.png.png";
 
 // Floating petals background component
 function FloatingPetals() {
-  const petalCount = 20;
-  const colors = ["#E6C79C", "#FFDAB9", "#F3E5AB"];
+  const petalCount = 25;
+  const colors = ["#E6C79C", "#F5D7A1", "#FFD1DC"];
   
   return (
     <div 
@@ -20,9 +20,9 @@ function FloatingPetals() {
     >
       {[...Array(petalCount)].map((_, i) => {
         const left = Math.random() * 100;
-        const duration = 12 + Math.random() * 8;
+        const duration = 15 + Math.random() * 10;
         const delay = Math.random() * 5;
-        const size = 10 + Math.random() * 10;
+        const size = 8 + Math.random() * 12;
         const color = colors[i % colors.length];
         
         return (
@@ -31,20 +31,20 @@ function FloatingPetals() {
             initial={{ y: "-10vh", x: 0, rotate: 0, opacity: 0 }}
             animate={{ 
               y: "110vh", 
-              x: [0, 40, -30, 10], 
-              rotate: [0, 180, 360, 540],
-              opacity: [0, 0.6, 0.6, 0] 
+              x: [0, 50, -40, 20], 
+              rotate: [0, 180, 360, 720],
+              opacity: [0, 0.7, 0.7, 0] 
             }}
             transition={{ duration, repeat: Infinity, delay, ease: "linear" }}
             style={{
               position: "absolute",
               left: `${left}%`,
               width: `${size}px`,
-              height: `${size * 1.5}px`,
+              height: `${size}px`,
               background: color,
-              borderRadius: "50% 50% 50% 0",
-              filter: "blur(0.5px)",
-              boxShadow: "0 0 8px rgba(255, 220, 180, 0.2)",
+              borderRadius: "50%",
+              filter: "blur(0.3px)",
+              boxShadow: "0 0 4px rgba(255, 255, 255, 0.4)",
             }}
           />
         );

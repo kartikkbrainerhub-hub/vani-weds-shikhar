@@ -1,137 +1,197 @@
-import React, { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import React from "react";
+import { motion } from "framer-motion";
 import { WEDDING_CONFIG } from "../config";
-import vinayakImg from "../assets/images/Vianyak.png";
+import heroBg from "../assets/images/hero-floral-bg.png";
+import vinayak from "../assets/images/Vianyak.png";
+
+const GanpatiIcon = () => (
+  <motion.div
+    initial={{ opacity: 0, y: 10 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ duration: 1.2, ease: "easeOut" }}
+    className="mb-4 mt-8 md:mt-12"
+  >
+    <div className="relative">
+      <div className="absolute inset-0 bg-[#D4AF37]/20 blur-2xl rounded-full scale-150" />
+      <img 
+        src={vinayak} 
+        alt="Vinayak" 
+        className="w-[60px] relative z-10 drop-shadow-[0_0_10px_rgba(212,175,55,0.4)]"
+      />
+    </div>
+  </motion.div>
+);
+
+const FloatingPetals = () => {
+  const colors = ["#FFD1DC", "#FADADD", "#FFE4E1", "#FFF0F5", "#E6C79C"];
+  return (
+    <div className="absolute inset-0 overflow-hidden pointer-events-none z-10">
+      {[...Array(35)].map((_, i) => {
+        const color = colors[i % colors.length];
+        const size = Math.random() * 12 + 8;
+        return (
+          <motion.div
+            key={i}
+            className="absolute rounded-full"
+            initial={{ 
+              top: "-5%", 
+              left: `${Math.random() * 100}%`,
+              scale: Math.random() * 0.6 + 0.6,
+              opacity: 0.8,
+              backgroundColor: color,
+              filter: "blur(0.4px) drop-shadow(0 0 3px rgba(255,182,193,0.3))"
+            }}
+            animate={{ 
+              top: "105%", 
+              left: [`${Math.random() * 100}%`, `${Math.random() * 100}%`],
+              rotate: 360 * (Math.random() > 0.5 ? 1 : -1),
+              x: [0, Math.random() * 100 - 50, 0]
+            }}
+            transition={{ 
+              top: { duration: 12 + Math.random() * 18, repeat: Infinity, ease: "linear" },
+              rotate: { duration: 8 + Math.random() * 12, repeat: Infinity, ease: "linear" },
+              x: { duration: 6 + Math.random() * 6, repeat: Infinity, ease: "easeInOut" },
+              delay: Math.random() * 15
+            }}
+            style={{
+              width: `${size}px`,
+              height: `${size}px`,
+              borderRadius: "40% 60% 70% 30% / 40% 50% 60% 50%" // Petal shape
+            }}
+          />
+        );
+      })}
+    </div>
+  );
+};
 
 export default function HeroSection() {
-  const { groom, bride, tagline, hashtag } = WEDDING_CONFIG;
-  const containerRef = useRef(null);
+  const { groom, bride, hashtag } = WEDDING_CONFIG;
 
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end end"]
-  });
-
-  // Layer 1: Ganpati + Shlok (Top)
-  // 0-30%: visible
-  // 30-70%: slight fade and move up
-  // 85-100%: fade out completely for next section
-  const topOpacity = useTransform(scrollYProgress, [0, 0.3, 0.7, 0.85, 1], [1, 1, 0.15, 0.15, 0]);
-  const topY = useTransform(scrollYProgress, [0, 0.3, 0.7], [0, 0, -40]);
-
-  // Layer 2: Hero Content (Center)
-  // 0-30%: hidden
-  // 30-70%: fade in, slide up
-  // 85-100%: fade out
-  const heroOpacity = useTransform(scrollYProgress, [0.3, 0.7, 0.85, 1], [0, 1, 1, 0]);
-  const heroY = useTransform(scrollYProgress, [0.3, 0.7], [60, 0]);
-
-  // Layer 3: Couple Photo (Bottom)
-  // 0-30%: visible
-  // 30-70%: slight fade
-  // 85-100%: fade out
-  const bottomOpacity = useTransform(scrollYProgress, [0, 0.3, 0.7, 0.85, 1], [1, 1, 0.25, 0.25, 0]);
-
-  // Scroll Indicator for the next section
-  const scrollIndicatorOpacity = useTransform(scrollYProgress, [0.7, 0.85, 1], [0, 1, 0]);
+  const sectionVariants = {
+    hidden: { opacity: 0, y: 15 },
+    visible: (custom) => ({
+      opacity: 1, 
+      y: 0,
+      transition: { 
+        duration: 0.8, 
+        delay: custom * 0.2, 
+        ease: [0.21, 0.45, 0.32, 0.9] 
+      }
+    })
+  };
 
   return (
-    <section ref={containerRef} id="hero" className="relative h-[220vh] bg-[#fdfaf5]">
-      {/* Sticky container that stays fixed while scrolling */}
-      <div className="sticky top-0 h-screen w-full overflow-hidden flex flex-col items-center justify-center">
-        
-        {/* Background Gradients & Textures */}
-        <div className="absolute inset-0 bg-gradient-to-br from-[#fdf6e3] via-[#faf0e6] to-[#fff5f7] -z-10" />
-        <div
-          className="absolute inset-0 opacity-[0.15] -z-10"
-          style={{
-            backgroundImage: `url("https://images.unsplash.com/photo-1519741497674-611481863552?w=1600&q=80")`,
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-          }}
+    <section 
+      id="hero" 
+      className="relative h-screen w-full flex flex-col items-center justify-center overflow-hidden bg-[#fdfaf5] px-6"
+    >
+      
+      {/* Background Layer */}
+      <div className="absolute inset-0 z-0">
+        <div className="absolute inset-0 bg-gradient-to-b from-[#fdfaf5] via-transparent to-[#fdfaf5] opacity-80 z-10" />
+        <img 
+          src={heroBg} 
+          alt="Wedding Background" 
+          className="w-full h-full object-cover opacity-20 blur-[1px]" 
         />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_50%,rgba(234,179,8,0.12)_0%,transparent_70%)] -z-10" />
+      </div>
 
-        {/* LAYER 1: Top Content (Ganpati & Shlok) */}
+      {/* Floating Petals */}
+      <FloatingPetals />
+
+      {/* --- TOP ZONE (Anchored near top) --- */}
+      <motion.div
+        variants={sectionVariants}
+        initial="hidden"
+        animate="visible"
+        custom={1}
+        className="absolute top-[30px] md:top-[50px] z-20 flex flex-col items-center px-4 w-full"
+      >
         <motion.div 
-          style={{ opacity: topOpacity, y: topY }}
-          className="absolute top-[6%] md:top-[8%] left-0 w-full flex flex-col items-center justify-center z-20 px-4"
+          initial={{ scale: 0.9, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ duration: 1, ease: "easeOut" }}
+          className="relative mb-2.5"
         >
+          <div className="absolute inset-0 bg-[#D4AF37]/15 blur-3xl rounded-full scale-150" />
           <img 
-            src={vinayakImg} 
+            src={vinayak} 
             alt="Vinayak" 
-            className="w-12 h-12 md:w-16 md:h-16 object-contain drop-shadow-[0_4px_10px_rgba(212,175,55,0.4)] mb-3" 
+            style={{ 
+              width: "clamp(48px, 12vw, 64px)",
+              filter: "drop-shadow(0 2px 6px rgba(0,0,0,0.1))" 
+            }}
+            className="relative z-10"
           />
-          <p className="font-['Cormorant_Garamond'] font-serif text-sm md:text-base text-[#a37e46] text-center leading-relaxed">
-            वक्रतुण्ड महाकाय
-            सूर्यकोटि समप्रभ ।<br/>
-            निर्विघ्नं कुरु मे देव
-            सर्वकार्येषु सर्वदा ॥
+        </motion.div>
+        
+        {/* Vakratunda Mahakaya Shloka */}
+        <div className="text-center max-w-[320px] md:max-w-xl">
+          <p className="font-['Cormorant_Garamond'] text-[#D4AF37] text-[clamp(14px,3.5vw,16px)] leading-[1.7] tracking-wider opacity-90 font-medium whitespace-pre-line drop-shadow-[0_0_8px_rgba(212,175,55,0.25)]">
+            वक्रतुण्ड महाकाय सूर्यकोटि समप्रभ ।{"\n"}
+            निर्विघ्नं कुरु मे देव सर्वकार्येषु सर्वदा ॥
           </p>
-        </motion.div>
+        </div>
+      </motion.div>
 
-        {/* LAYER 2: Hero Content (Center Reveal) */}
-        <motion.div
-          style={{ opacity: heroOpacity, y: heroY }}
-          className="absolute inset-0 z-30 flex flex-col items-center justify-center w-full px-4 text-center pointer-events-none"
-        >
-          <div className="pointer-events-auto flex flex-col items-center justify-center">
-            <p className="font-['Dancing_Script'] text-2xl md:text-4xl text-[#ca8a04] mb-4 md:mb-6">
-              The wedding of
-            </p>
-            
-            <div className="flex flex-col items-center mb-6 md:mb-8">
-              <h1 className="font-['Playfair_Display'] text-6xl md:text-8xl lg:text-9xl font-bold text-[#3d2b1f] leading-none tracking-tight">
-                {groom}
-              </h1>
-              <span className="font-['Dancing_Script'] text-5xl md:text-7xl text-[#ca8a04] my-1 md:-my-4">
-                &amp;
-              </span>
-              <h1 className="font-['Playfair_Display'] text-6xl md:text-8xl lg:text-9xl font-bold text-[#3d2b1f] leading-none tracking-tight">
-                {bride}
-              </h1>
-            </div>
-
-            <p className="font-['Lato'] text-sm md:text-base text-[#7a6052] italic max-w-md mx-auto mb-6 md:mb-8 leading-relaxed">
-              {tagline}
-            </p>
-
-            <span className="font-['Dancing_Script'] text-xl md:text-2xl text-[#ca8a04] bg-yellow-500/10 px-8 py-2 rounded-full border border-yellow-500/30">
-              {hashtag}
-            </span>
-          </div>
+      {/* --- CENTER ZONE (Perfectly centered focus) --- */}
+      <motion.div
+        variants={sectionVariants}
+        initial="hidden"
+        animate="visible"
+        custom={2}
+        className="relative z-20 flex flex-col items-center"
+      >
+        {/* Shimmering focus behind names */}
+        <div className="absolute w-[300px] h-[300px] bg-[#D4AF37]/10 blur-[80px] rounded-full z-0" />
+        
+        <div className="relative z-10 flex flex-col items-center gap-y-2 md:gap-y-3">
+          <h1 className="font-['Great_Vibes'] text-7xl md:text-9xl text-[#5a1a1a] leading-none">
+            {bride}
+          </h1>
+          <span className="font-['Great_Vibes'] text-3xl md:text-4xl text-[#5a1a1a] opacity-60">
+            &
+          </span>
+          <h1 className="font-['Great_Vibes'] text-7xl md:text-9xl text-[#5a1a1a] leading-none">
+            {groom}
+          </h1>
           
-          {/* Scroll Indicator at the bottom of Layer 2 */}
-          <motion.div style={{ opacity: scrollIndicatorOpacity }} className="absolute bottom-6 md:bottom-10">
-            <div className="flex flex-col items-center gap-2">
-              <span className="text-[10px] tracking-[0.3em] text-[#ca8a04] uppercase font-['Lato'] font-bold">
-                Scroll to discover
-              </span>
-              <motion.div
-                animate={{ y: [0, 8, 0] }}
-                transition={{ duration: 2, repeat: Infinity }}
-                className="w-px h-10 bg-gradient-to-b from-[#ca8a04] to-transparent"
-              />
-            </div>
-          </motion.div>
-        </motion.div>
+          <p className="font-['Cormorant_Garamond'] text-[#8c7a6b] text-base md:text-lg italic tracking-widest mt-4">
+            "Two souls, one beautiful journey"
+          </p>
+        </div>
+      </motion.div>
 
-        {/* LAYER 3: Couple Photo (Bottom) */}
-        <motion.div 
-          style={{ opacity: bottomOpacity }}
-          className="absolute bottom-0 left-0 w-full flex justify-center z-10"
-        >
-          {/* Elegant arched photo container */}
-          <div className="w-40 h-48 md:w-56 md:h-64 rounded-t-[100px] overflow-hidden border-t-[3px] border-x-[3px] border-[#D4AF37]/60 shadow-[0_-10px_30px_rgba(0,0,0,0.1)] bg-[#FDFBF7]">
-            <img 
-              src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=800&q=80" 
-              alt="Couple" 
-              className="w-full h-full object-cover filter contrast-125 saturate-50" 
+      {/* --- BOTTOM ZONE (Anchored action area) --- */}
+      <motion.div
+        variants={sectionVariants}
+        initial="hidden"
+        animate="visible"
+        custom={3}
+        className="absolute bottom-[40px] z-20 flex flex-col items-center"
+      >
+        {/* Hashtag */}
+        <span className="font-['Dancing_Script'] text-2xl text-[#D4AF37] italic font-bold tracking-[0.15em] mb-4">
+          {hashtag}
+        </span>
+
+        {/* Scroll Indicator (Refined spacing) */}
+        <div className="flex flex-col items-center gap-2">
+          <div className="w-px h-8 bg-gradient-to-b from-[#D4AF37] to-transparent relative">
+            <motion.div
+              animate={{ y: [0, 8, 0] }}
+              transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+              className="absolute -bottom-1 -left-[3px] w-[7px] h-[7px] bg-[#D4AF37] rounded-full shadow-[0_0_10px_rgba(212,175,55,0.4)]"
             />
           </div>
-        </motion.div>
+          <span className="text-[9px] tracking-[0.35em] text-[#D4AF37] uppercase font-bold opacity-50 mt-4">
+            Scroll to Begin
+          </span>
+        </div>
+      </motion.div>
 
-      </div>
     </section>
   );
 }
+

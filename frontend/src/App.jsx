@@ -31,50 +31,54 @@ export default function App() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8 }}
+          className="min-h-screen bg-stone-100/30"
         >
-          <main>
-            <HeroSection />
-            <ScratchToRevealSection />
-            <StorySection />
-            <GallerySection />
-            <EventDetails />
-            <CountdownTimer />
-            <LocationSection />
-            <RSVPSection />
-            <ThankYouSection />
-          </main>
+          <div className="max-w-[420px] mx-auto bg-white shadow-[0_0_100px_rgba(0,0,0,0.1)] relative min-h-screen">
+            <main>
+              <HeroSection />
+              <ScratchToRevealSection />
+              <StorySection />
+              <GallerySection />
+              <EventDetails />
+              <CountdownTimer />
+              <LocationSection />
+              <RSVPSection />
+              <ThankYouSection />
+            </main>
 
-          {/* Footer */}
-          <footer
-            style={{
-              background: "#2a1a0f",
-              padding: "2rem 1.5rem",
-              textAlign: "center",
-              borderTop: "1px solid rgba(234,179,8,0.2)",
-            }}
-          >
-            <p
+            {/* Footer */}
+            <footer
               style={{
-                fontFamily: "'Dancing Script', cursive",
-                fontSize: "1.1rem",
-                color: "#eab308",
-                margin: "0 0 0.5rem",
+                background: "#2a1a0f",
+                padding: "3rem 1.5rem",
+                textAlign: "center",
+                borderTop: "1px solid rgba(234,179,8,0.1)",
               }}
             >
-              Made with ❤️ for Arjun &amp; Priya
-            </p>
-            <p
-              style={{
-                fontFamily: "'Lato', sans-serif",
-                fontSize: "0.75rem",
-                color: "rgba(253,250,245,0.4)",
-                margin: 0,
-                letterSpacing: "0.1em",
-              }}
-            >
-              #ArjunWedsPriya · December 20, 2026
-            </p>
-          </footer>
+              <p
+                style={{
+                  fontFamily: "'Dancing Script', cursive",
+                  fontSize: "1.2rem",
+                  color: "#D4AF37",
+                  margin: "0 0 0.5rem",
+                }}
+              >
+                Made with ❤️ for Shikhar & Vani
+              </p>
+              <p
+                style={{
+                  fontFamily: "'Lato', sans-serif",
+                  fontSize: "0.7rem",
+                  color: "rgba(253,250,245,0.3)",
+                  margin: 0,
+                  letterSpacing: "0.2em",
+                  textTransform: "uppercase"
+                }}
+              >
+                #ShiVa · May 14, 2026
+              </p>
+            </footer>
+          </div>
 
           {/* Floating music player */}
           <MusicPlayer />

@@ -143,26 +143,15 @@ export default function LocationSection() {
               </div>
             ))}
 
-            {/* Directions button */}
+            {/* Directions Link */}
             <motion.a
               href="https://maps.google.com"
               target="_blank"
               rel="noopener noreferrer"
-              whileHover={{ scale: 1.03 }}
-              whileTap={{ scale: 0.97 }}
-              style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                gap: "0.5rem",
-                marginTop: "1.5rem",
-                textDecoration: "none",
-              }}
+              className="mt-8 flex items-center justify-center gap-2 text-[#ca8a04] font-bold uppercase tracking-widest text-[10px] border-b border-[#ca8a04]/30 pb-1 hover:border-[#ca8a04] transition-all"
             >
-              <button className="btn-gold" style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
-                <Navigation size={14} />
-                Get Directions
-              </button>
+              <Navigation size={12} />
+              Get Directions
             </motion.a>
           </div>
         </motion.div>

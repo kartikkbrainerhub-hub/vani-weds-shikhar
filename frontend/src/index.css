@@ -15,7 +15,7 @@
   body {
     margin: 0;
     padding: 0;
-    background-color: #fdfaf5;
+    background: radial-gradient(circle at center, #fdfaf5 0%, #f7f1e6 100%);
     color: #3d2b1f;
     font-family: 'Lato', sans-serif;
     overflow-x: hidden;
