@@ -11,6 +11,7 @@ import CountdownTimer from "./components/CountdownTimer";
 import LocationSection from "./components/LocationSection";
 import ThankYouSection from "./components/ThankYouSection";
 import MusicPlayer from "./components/MusicPlayer";
+import { Analytics } from "@vercel/analytics/react";
 
 export default function App() {
   const [showIntro, setShowIntro] = useState(true);
@@ -123,6 +124,7 @@ export default function App() {
 
       {/* Global music player */}
       <MusicPlayer />
+      <Analytics />
     </>
   );
 }
