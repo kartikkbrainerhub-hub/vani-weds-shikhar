@@ -63,3 +63,4 @@ Update `frontend/src/config.js` to customize:
 ## 📄 License
 
 This project is for personal use as a wedding invitation.
+# vani-weds-shikhar
